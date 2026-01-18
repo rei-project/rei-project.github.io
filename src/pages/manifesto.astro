@@ -1,31 +1,34 @@
 ---
 import ManifestoLayout from '../layouts/ManifestoLayout.astro';
 import BackLink from '../components/BackLink.astro';
-import { marked } from 'marked';
+import {marked} from 'marked';
 
 // Fetch MANIFESTO.md from GitHub at build time
 const manifestoUrl = 'https://raw.githubusercontent.com/rei-project/REI/main/MANIFESTO.md';
 let manifestoHtml = '';
 
 try {
-	const response = await fetch(manifestoUrl);
-	if (response.ok) {
-		const markdown = await response.text();
-		manifestoHtml = await marked.parse(markdown);
-	} else {
-		manifestoHtml = '<p>Failed to load manifesto content.</p>';
-	}
+    const response = await fetch(manifestoUrl);
+    if (response.ok) {
+        const markdown = await response.text();
+        manifestoHtml = await marked.parse(markdown);
+    } else {
+        manifestoHtml = '<p>Failed to load manifesto content.</p>';
+    }
 } catch (error) {
-	manifestoHtml = '<p>Failed to load manifesto content.</p>';
+    manifestoHtml = '<p>Failed to load manifesto content.</p>';
 }
 ---
 
 <ManifestoLayout>
-	<BackLink href="/" text="← REI Project" />
+    <BackLink href="/" text="← REI Project"/>
 
-	<article class="manifesto-content">
-		<h1>Manifesto</h1>
+    <article class="manifesto-content">
+        <h1>Manifesto</h1>
 
-		<Fragment set:html={manifestoHtml} />
-	</article>
+        <Fragment set:html={manifestoHtml}/>
+    </article>
+
+    <BackLink href="/" text="← REI Project"/>
+
 </ManifestoLayout>
