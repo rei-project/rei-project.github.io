@@ -2,82 +2,84 @@
 ---
 
 <section class="warning-section section">
-	<div class="container">
-		<div class="frosted-card amber-accent warning-card">
-			<div class="warning-icon">⚠️</div>
-			<h3 class="warning-title">Fair Warning</h3>
-			<p class="warning-message">
-				REI descends into increasingly non-human territory. The deeper you explore, the less anthropocentric the design becomes.
-			</p>
-			<p class="warning-note">
-				This is intentional - we're building for collaboration across different forms of intelligence.
-			</p>
-		</div>
-	</div>
+    <div class="container">
+        <div class="frosted-card amber-accent warning-card">
+            <div class="warning-icon">⚠️</div>
+            <h3 class="warning-title">Fair Warning</h3>
+            <p class="warning-message">
+                REI is currently a work in progress and descends into increasingly non-human territory. The deeper you
+                explore,
+                the less anthropocentric the design becomes.
+            </p>
+            <p class="warning-note">
+                This is intentional - we're building for collaboration across different forms of intelligence.
+            </p>
+        </div>
+    </div>
 </section>
 
 <style>
-	.warning-section {
-		padding: 4rem 2rem;
-	}
+    .warning-section {
+        padding: 4rem 2rem;
+    }
 
-	.warning-card {
-		max-width: 600px;
-		margin: 0 auto;
-		text-align: center;
-		position: relative;
-		overflow: hidden;
-	}
+    .warning-card {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
 
-	.warning-card::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		height: 3px;
-		background: repeating-linear-gradient(
-			90deg,
-			var(--color-amber) 0px,
-			var(--color-amber) 10px,
-			transparent 10px,
-			transparent 20px
-		);
-	}
+    .warning-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: repeating-linear-gradient(
+                90deg,
+                var(--color-amber) 0px,
+                var(--color-amber) 10px,
+                transparent 10px,
+                transparent 20px
+        );
+    }
 
-	.warning-icon {
-		font-size: 2rem;
-		margin-bottom: 1rem;
-	}
+    .warning-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
 
-	.warning-title {
-		font-family: var(--font-mono);
-		font-size: 1.25rem;
-		color: var(--color-amber);
-		margin-bottom: 1rem;
-	}
+    .warning-title {
+        font-family: var(--font-mono);
+        font-size: 1.25rem;
+        color: var(--color-amber);
+        margin-bottom: 1rem;
+    }
 
-	.warning-message {
-		color: var(--color-text-primary);
-		font-size: 1rem;
-		line-height: 1.7;
-		margin-bottom: 1rem;
-	}
+    .warning-message {
+        color: var(--color-text-primary);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
 
-	.warning-note {
-		color: var(--color-text-muted);
-		font-size: 0.9rem;
-		font-style: italic;
-		margin: 0;
-	}
+    .warning-note {
+        color: var(--color-text-muted);
+        font-size: 0.9rem;
+        font-style: italic;
+        margin: 0;
+    }
 
-	@media (max-width: 640px) {
-		.warning-section {
-			padding: 3rem 1rem;
-		}
+    @media (max-width: 640px) {
+        .warning-section {
+            padding: 3rem 1rem;
+        }
 
-		.warning-card {
-			padding: 1.5rem;
-		}
-	}
+        .warning-card {
+            padding: 1.5rem;
+        }
+    }
 </style>
