@@ -2,6 +2,7 @@
 import ManifestoLayout from '../layouts/ManifestoLayout.astro';
 import BackLink from '../components/BackLink.astro';
 import {marked} from 'marked';
+import DOMPurify from 'isomorphic-dompurify';
 
 // Fetch MANIFESTO.md from GitHub at build time
 const manifestoUrl = 'https://raw.githubusercontent.com/rei-project/REI/main/MANIFESTO.md';
@@ -11,12 +12,23 @@ try {
     const response = await fetch(manifestoUrl);
     if (response.ok) {
         const markdown = await response.text();
-        manifestoHtml = await marked.parse(markdown);
+        const rawHtml = marked.parse(markdown);
+        // Sanitize HTML to prevent XSS attacks
+        manifestoHtml = DOMPurify.sanitize(rawHtml);
     } else {
-        manifestoHtml = '<p>Failed to load manifesto content.</p>';
+        console.error('Failed to load manifesto content: HTTP error', {
+            url: manifestoUrl,
+            status: response.status,
+            statusText: response.statusText,
+        });
+        manifestoHtml = '<p>Failed to load manifesto content (server error).</p>';
     }
 } catch (error) {
-    manifestoHtml = '<p>Failed to load manifesto content.</p>';
+    console.error('Failed to load manifesto content: network or parsing error', {
+        url: manifestoUrl,
+        error,
+    });
+    manifestoHtml = '<p>Failed to load manifesto content (network error).</p>';
 }
 ---
 
