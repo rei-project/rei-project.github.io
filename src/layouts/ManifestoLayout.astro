@@ -1,0 +1,275 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'REI Manifesto - Redesigning Execution for Intelligence',
+	description = 'The REI Manifesto - A vision for programming in the age of AI collaboration'
+} = Astro.props;
+
+const siteUrl = 'https://rei-project.github.io';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Primary Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="article" />
+		<meta property="og:url" content={`${siteUrl}/manifesto`} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary" />
+		<meta property="twitter:url" content={`${siteUrl}/manifesto`} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+
+		<!-- Theme Color -->
+		<meta name="theme-color" content="#0a0a0a" />
+
+		<!-- Analytics -->
+		<script async src="https://stats.lemonslice.de/script.js" data-website-id="e7a4db7d-66c2-4331-a60a-b93d7a576ce9"></script>
+	</head>
+	<body class="manifesto-page">
+		<div class="reading-container">
+			<slot />
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	.manifesto-page {
+		background: var(--color-bg-primary);
+		min-height: 100vh;
+	}
+
+	.reading-container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 4rem 2rem;
+	}
+
+	.manifesto-content {
+		font-family: var(--font-mono);
+		font-size: 1rem;
+		line-height: 1.75;
+		letter-spacing: 0.02em;
+		color: var(--color-text-primary);
+	}
+
+	.manifesto-content h1 {
+		font-size: 3rem;
+		color: var(--color-electric-blue);
+		text-align: center;
+		text-transform: uppercase;
+		margin-bottom: 3rem;
+		text-shadow: var(--glow-sm) rgba(0, 217, 255, 0.5);
+	}
+
+	.manifesto-content h2 {
+		font-size: 2rem;
+		color: var(--color-electric-blue);
+		margin-top: 3rem;
+		margin-bottom: 1.5rem;
+		text-transform: uppercase;
+		border-left: 3px solid var(--color-electric-blue);
+		padding-left: 1rem;
+	}
+
+	.manifesto-content h3 {
+		font-size: 1.5rem;
+		color: var(--color-neon-green);
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+	}
+
+	.manifesto-content h4 {
+		font-size: 1.25rem;
+		color: var(--color-amber);
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.manifesto-content p {
+		margin-bottom: 1.5rem;
+		color: var(--color-text-primary);
+	}
+
+	.manifesto-content ul,
+	.manifesto-content ol {
+		margin-left: 2rem;
+		margin-bottom: 1.5rem;
+		line-height: 1.7;
+	}
+
+	.manifesto-content ul {
+		list-style: none;
+	}
+
+	.manifesto-content ul li {
+		position: relative;
+		margin-bottom: 0.5rem;
+		padding-left: 1.5rem;
+	}
+
+	.manifesto-content ul li::before {
+		content: '›';
+		position: absolute;
+		left: 0;
+		color: var(--color-electric-blue);
+		font-weight: bold;
+	}
+
+	.manifesto-content ol {
+		counter-reset: list-counter;
+		list-style: none;
+	}
+
+	.manifesto-content ol li {
+		position: relative;
+		margin-bottom: 0.5rem;
+		padding-left: 2rem;
+		counter-increment: list-counter;
+	}
+
+	.manifesto-content ol li::before {
+		content: counter(list-counter) '.';
+		position: absolute;
+		left: 0;
+		color: var(--color-neon-green);
+		font-weight: bold;
+	}
+
+	.manifesto-content strong {
+		color: var(--color-neon-green);
+		font-weight: 700;
+	}
+
+	.manifesto-content em {
+		color: var(--color-electric-blue);
+		font-style: italic;
+	}
+
+	.manifesto-content blockquote {
+		border-left: 2px solid var(--color-electric-blue);
+		margin: 2rem 0;
+		font-style: italic;
+		color: var(--color-text-secondary);
+		background: var(--color-bg-surface);
+		padding: 1.5rem;
+		border-radius: var(--radius-md);
+	}
+
+	.manifesto-content a {
+		color: var(--color-electric-blue);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transition: all var(--transition-fast);
+	}
+
+	.manifesto-content a:hover {
+		color: var(--color-neon-green);
+		text-shadow: var(--glow-sm) rgba(0, 255, 136, 0.3);
+	}
+
+	.manifesto-content hr {
+		border: none;
+		height: 1px;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			var(--color-electric-blue),
+			transparent
+		);
+		margin: 3rem 0;
+	}
+
+	.manifesto-content code {
+		background: var(--color-bg-surface);
+		padding: 0.2em 0.4em;
+		border-radius: var(--radius-sm);
+		font-size: 0.9em;
+		color: var(--color-amber);
+	}
+
+	.manifesto-content pre {
+		background: var(--color-bg-secondary);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		padding: 1.5rem;
+		overflow-x: auto;
+		margin: 1.5rem 0;
+	}
+
+	.manifesto-content pre code {
+		background: transparent;
+		padding: 0;
+		color: var(--color-text-primary);
+	}
+
+	/* Custom scrollbar for manifesto page */
+	.manifesto-page::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	.manifesto-page::-webkit-scrollbar-track {
+		background: rgba(20, 20, 20, 0.5);
+	}
+
+	.manifesto-page::-webkit-scrollbar-thumb {
+		background: var(--color-electric-blue);
+		border-radius: 4px;
+	}
+
+	.manifesto-page::-webkit-scrollbar-thumb:hover {
+		background: var(--color-neon-green);
+	}
+
+	/* Responsive styles */
+	@media (max-width: 1024px) {
+		.manifesto-content {
+			font-size: 0.9375rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.reading-container {
+			padding: 2rem 1rem;
+		}
+
+		.manifesto-content {
+			font-size: 0.875rem;
+		}
+
+		.manifesto-content h1 {
+			font-size: 2rem;
+		}
+
+		.manifesto-content h2 {
+			font-size: 1.5rem;
+		}
+
+		.manifesto-content h3 {
+			font-size: 1.25rem;
+		}
+
+		.manifesto-content h4 {
+			font-size: 1.125rem;
+		}
+	}
+</style>

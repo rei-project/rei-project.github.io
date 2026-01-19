@@ -1,0 +1,40 @@
+---
+interface Props {
+	href: string;
+	text?: string;
+}
+
+const { href, text = '← REI Project' } = Astro.props;
+---
+
+<nav class="back-nav">
+	<a href={href} class="back-link">
+		{text}
+	</a>
+</nav>
+
+<style>
+	.back-nav {
+		margin-bottom: 2rem;
+	}
+
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		font-family: var(--font-mono);
+		font-size: 0.875rem;
+		color: var(--color-text-secondary);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.back-link:hover {
+		color: var(--color-electric-blue);
+	}
+
+	.back-link:focus-visible {
+		outline: 2px solid var(--color-electric-blue);
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+</style>

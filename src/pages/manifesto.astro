@@ -1,0 +1,46 @@
+---
+import ManifestoLayout from '../layouts/ManifestoLayout.astro';
+import BackLink from '../components/BackLink.astro';
+import {marked} from 'marked';
+import DOMPurify from 'isomorphic-dompurify';
+
+// Fetch MANIFESTO.md from GitHub at build time
+const manifestoUrl = 'https://raw.githubusercontent.com/rei-project/REI/main/MANIFESTO.md';
+let manifestoHtml = '';
+
+try {
+    const response = await fetch(manifestoUrl);
+    if (response.ok) {
+        const markdown = await response.text();
+        const rawHtml = marked.parse(markdown);
+        // Sanitize HTML to prevent XSS attacks
+        manifestoHtml = DOMPurify.sanitize(rawHtml);
+    } else {
+        console.error('Failed to load manifesto content: HTTP error', {
+            url: manifestoUrl,
+            status: response.status,
+            statusText: response.statusText,
+        });
+        manifestoHtml = '<p>Failed to load manifesto content (server error).</p>';
+    }
+} catch (error) {
+    console.error('Failed to load manifesto content: network or parsing error', {
+        url: manifestoUrl,
+        error,
+    });
+    manifestoHtml = '<p>Failed to load manifesto content (network error).</p>';
+}
+---
+
+<ManifestoLayout>
+    <BackLink href="/" text="← REI Project"/>
+
+    <article class="manifesto-content">
+        <h1>Manifesto</h1>
+
+        <Fragment set:html={manifestoHtml}/>
+    </article>
+
+    <BackLink href="/" text="← REI Project"/>
+
+</ManifestoLayout>
